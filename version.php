@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *  message processor version information
+ *  Whatsapp message processor version information
  *
  * @package    message_whatsapp
- * @copyright  2022 Alok Kumar
+ * @copyright  2022 Abhishek Kumar
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();

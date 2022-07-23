@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Airnotifier configuration page
+ * Whatsapp configuration page
  *
  * @package    message_whatsapp
- * @copyright  2012 Jerome Mouneyrac, 2014 Juan Leyva
+ * @copyright  2022 Abhishek Kumar
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die;

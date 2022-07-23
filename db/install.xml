@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="message/output/whatsapp/db" VERSION="20190325" COMMENT="XMLDB file for Moodle message/output/email"
+<XMLDB PATH="message/output/whatsapp/db" VERSION="20190325" COMMENT="XMLDB file for Moodle message/output/whatsapp"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
 >

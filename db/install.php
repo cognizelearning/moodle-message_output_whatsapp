@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Installation code for the email message processor
+ * Installation code for the whatsapp message processor
  *
- * @package    message_email
- * @copyright  2009 Moodle Pty Ltd (http://moodle.com)
+ * @package    message_whatsapp
+ * @copyright  2022 Abhishek Kumar
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

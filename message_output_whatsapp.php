@@ -19,7 +19,7 @@
  * Contains the definiton of the whatsapp message processors (sends messages to users via whatsapp)
  *
  * @package   message_whatsapp
- * @copyright 2008 Luis Rodrigues and Martin Dougiamas
+ * @copyright 2022 Abhishek Kumar
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once($CFG->dirroot . '/message/output/lib.php');
