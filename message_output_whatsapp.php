@@ -101,14 +101,14 @@ class message_output_whatsapp extends message_output {
         $twilio = new Client($config->accountsid, $config->authtoken);
        
         
-        $message = $twilio->messages->create("whatsapp:+918826062895", // to 
+        $message = $twilio->messages->create("whatsapp:$eventdata->userto->phone1", // to 
                 array(
-                    "from" => "whatsapp:+14155238886",
+                    "from" => "whatsapp:$config->senderno",
                      "body" => $eventdata->fullmessage
                 )
         );
        
-        print_object("Messege sent");
+       
         return true;
     }
 

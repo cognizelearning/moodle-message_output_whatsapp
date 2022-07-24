@@ -32,4 +32,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext('message_whatsapp/authtoken',
                     get_string('authtoken', 'message_whatsapp'),
                     get_string('authtoken', 'message_whatsapp'), '', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('message_whatsapp/senderno',
+                    get_string('senderno', 'message_whatsapp'),
+                    get_string('senderno', 'message_whatsapp'), '', PARAM_TEXT));
 }
