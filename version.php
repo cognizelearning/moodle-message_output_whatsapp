@@ -18,7 +18,8 @@
  *  Whatsapp message processor version information
  *
  * @package    message_whatsapp
- * @copyright  2022 Abhishek Kumar
+ * @copyright  2022 Cognize Learning
+ * @author     Abhishek Kumar <abhishek@cognizelearning.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -26,3 +27,4 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version    = 2022041901;           // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires   = 2021041200;             // Requires this Moodle version.
 $plugin->component  = 'message_whatsapp';  // Full name of the plugin (used for diagnostics).
+$plugin->maturity  = MATURITY_ALPHA;

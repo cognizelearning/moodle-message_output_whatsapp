@@ -18,14 +18,15 @@
  * Whatsapp configuration page
  *
  * @package    message_whatsapp
- * @copyright  2022 Abhishek Kumar
+ * @copyright  @copyright  2022 Cognize Learning
+ * @author     Abhishek Kumar <abhishek@cognizelearning.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
 
-   $settings->add(new admin_setting_configtext('message_whatsapp/accountsid',
+    $settings->add(new admin_setting_configtext('message_whatsapp/accountsid',
                     get_string('accountsid', 'message_whatsapp'),
                     get_string('accountsid_desc', 'message_whatsapp'), '',
                     PARAM_TEXT));

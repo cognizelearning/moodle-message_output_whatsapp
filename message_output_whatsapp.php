@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -19,66 +18,58 @@
  * Contains the definiton of the whatsapp message processors (sends messages to users via whatsapp)
  *
  * @package   message_whatsapp
- * @copyright 2022 Abhishek Kumar
+ * @copyright  @copyright  2022 Cognize Learning
+ * @author     Abhishek Kumar <abhishek@cognizelearning.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die;
 require_once($CFG->dirroot . '/message/output/lib.php');
+
 require_once $CFG->dirroot . '/vendor/autoload.php';
 
 use Twilio\Rest\Client;
 
-/**
- * The whatsapp message processor
- *
- * @package   message_whatsapp
- * @copyright 2008 Luis Rodrigues and Martin Dougiamas
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class message_output_whatsapp extends message_output {
 
     /**
      * Processes the message (sends by whatsapp).
      * @param object $eventdata the event data submitted by the message sender plus $eventdata->savedmessageid
      */
-    function send_message($eventdata) {
+    public function send_message($eventdata) {
         global $CFG, $DB;
-        
-       
+
         $config = get_config('message_whatsapp');
-      
+
         if (empty($config->authtoken) || empty($config->accountsid)) {
             return true;
         }
-
 
         if (!empty($CFG->noemailever)) {
             // Hidden setting for development sites, set in config.php if needed.
             debugging('$CFG->noemailever active, no airnotifier message sent.', DEBUG_MINIMAL);
             return true;
         }
-        // skip any messaging suspended and deleted users
+        // Skip any messaging suspended and deleted users.
         if ($eventdata->userto->auth === 'nologin' or $eventdata->userto->suspended or $eventdata->userto->deleted) {
             return true;
         }
 
-        //the user the whatsapp is going to
+        // The user the whatsapp is going to.
         $recipient = null;
 
-        //check if the recipient has a different whatsapp address specified in their messaging preferences Vs their user profile
+        // Check if the recipient has a different whatsapp address specified in their messaging preferences Vs their user profile.
         $whatsappmessagingpreference = get_user_preferences('message_processor_whatsapp_whatsapp', null, $eventdata->userto);
         $whatsappmessagingpreference = clean_param($whatsappmessagingpreference, PARAM_ALPHANUMEXT);
 
         // If the recipient has set an whatsapp address in their preferences use that instead of the one in their profile
-        // but only if overriding the notification whatsapp address is allowed
+        // But only if overriding the notification whatsapp address is allowed.
         if (!empty($whatsappmessagingpreference) && !empty($CFG->messagingallowwhatsappoverride)) {
-            //clone to avoid altering the actual user object
+            // Clone to avoid altering the actual user object.
             $recipient = clone($eventdata->userto);
             $recipient->whatsapp = $whatsappmessagingpreference;
         } else {
             $recipient = $eventdata->userto;
         }
-
-
 
         // Configure mail replies - this is used for incoming mail replies.
         $replyto = '';
@@ -89,7 +80,7 @@ class message_output_whatsapp extends message_output {
                 $replytoname = $eventdata->replytoname;
             }
         }
-       
+
         // We whatsapp messages from private conversations straight away, but for group we add them to a table to be sent later.
         $whatsappuser = true;
         if (!$eventdata->notification) {
@@ -99,16 +90,14 @@ class message_output_whatsapp extends message_output {
         }
 
         $twilio = new Client($config->accountsid, $config->authtoken);
-       
-        
-        $message = $twilio->messages->create("whatsapp:$eventdata->userto->phone1", // to 
+
+        $message = $twilio->messages->create("whatsapp:$eventdata->userto->phone1",
                 array(
                     "from" => "whatsapp:$config->senderno",
-                     "body" => $eventdata->fullmessage
+                    "body" => $eventdata->fullmessage
                 )
         );
-       
-       
+
         return true;
     }
 
@@ -117,7 +106,7 @@ class message_output_whatsapp extends message_output {
      *
      * @param array $preferences An array of user preferences
      */
-    function config_form($preferences) {
+    public function config_form($preferences) {
         return null;
     }
 
@@ -127,7 +116,7 @@ class message_output_whatsapp extends message_output {
      * @param stdClass $form preferences form class
      * @param array $preferences preferences array
      */
-    function process_form($form, &$preferences) {
+    public function process_form($form, &$preferences) {
         return true;
     }
 
@@ -146,7 +135,7 @@ class message_output_whatsapp extends message_output {
      * @param array $preferences preferences array
      * @param int $userid the user id
      */
-    function load_data(&$preferences, $userid) {
+    public function load_data(&$preferences, $userid) {
         $preferences->whatsapp_whatsapp = get_user_preferences('message_processor_whatsapp_whatsapp', '', $userid);
     }
 
